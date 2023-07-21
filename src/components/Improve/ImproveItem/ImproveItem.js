@@ -6,6 +6,7 @@ const ImproveItem = ({ item, index }) => {
     const dispatch = useDispatch();
     const ImproveAmount = useSelector(state => state.counter.improve[index].amount);
     const money = useSelector(state => state.counter.money);
+    const lvl = useSelector(state => state.counter.lvl);
 
     const upPrice = ImproveAmount * ImproveAmount;
 
@@ -18,7 +19,8 @@ const ImproveItem = ({ item, index }) => {
     return (<div className="improve-item">
         <div className="improve-item__info">
             <span >
-                {item.amount}
+
+                {index === 0 ? item.amount * lvl : item.amount}
             </span>
             <span>
                 {item.name}

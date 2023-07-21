@@ -8,6 +8,7 @@ import Improve from './components/Improve/Improve';
 function App() {
   const dispatch = useDispatch();
   const ImproveArr = useSelector(state => state.counter.improve);
+  const lvl = useSelector(state => state.counter.lvl);
   const charRef = useRef();
   const mobRef = useRef();
   const appRef = useRef();
@@ -26,7 +27,7 @@ function App() {
     }, 500)
     if (mobRef.current?.offsetLeft < 200 && mobRef.current?.offsetLeft > 100) {
       mobRef.current.classList.add("skeleton__dead");
-      dispatch(incrementMoney(ImproveArr[0].amount));
+      dispatch(incrementMoney(ImproveArr[0].amount*lvl));
       dispatch(addExp(ImproveArr[1].amount));
       setTimeout(() => {
         setMonst(null);

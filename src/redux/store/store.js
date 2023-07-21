@@ -15,8 +15,8 @@ export const counterSlice = createSlice({
     maxExp: 10,
     money: 0,
     improve: [
-      {name: 'Монет за скелета', amount: 1},
-      {name: 'Опыта за скелета', amount: 1}
+      { name: 'Монет за скелета', amount: 1 },
+      { name: 'Опыта за скелета', amount: 1 }
       // {goldInsec: {name: 'Gold in sec', amount: 1}},
       // {expInSec: {name: 'Exp in sec', amount: 1}}
     ]
@@ -46,6 +46,6 @@ export const counterSlice = createSlice({
 })
 
 
-export const { incrementMoney, increment, zeroingExp, addExp, improveUp} = counterSlice.actions
+export const { incrementMoney, increment, zeroingExp, addExp, improveUp } = counterSlice.actions
 
 export default counterSlice.reducer
