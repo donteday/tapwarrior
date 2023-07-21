@@ -94,7 +94,7 @@
 
 .dungeon__floor {
   position: absolute;
-  top: 65vh;
+  bottom: 0;
   width: 100vw;
   height: 35vh;
   background-image: url('./img/dungeon_floor.png');
