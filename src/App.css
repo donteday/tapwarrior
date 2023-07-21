@@ -1,38 +1,245 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.app {
+  /* max-width: 400px; */
+  width: 100vw;
+  /* height: 100%; */
   display: flex;
   flex-direction: column;
+  /* align-items: center; */
+  margin: 0 auto;
+  background-color: #181425;
+  overflow: hidden;
+}
+
+.mob__container {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
   align-items: center;
+  flex-direction: column;
+  margin-top: 30px;
+  color: aliceblue;
+}
+
+.mob__bar-container {
+  border: 1px solid rgb(67, 67, 67);
+  width: 100px;
+  height: 7px;
+}
+
+.mob__bar-hp {
+  width: 100%;
+  height: 5px;
+  background-color: aqua;
+}
+
+.mob__box {
+  /* border: 2px solid red; */
+}
+
+.char__hp-container {
+  position: relative;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: flex-end;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid rgb(187, 1, 1);
+  overflow: hidden;
+  box-shadow: 0px 0px 10px rgba(50, 50, 50, 0.9)
 }
 
-.App-link {
-  color: #61dafb;
+.footer {
+  padding: 5px;
+  width: 100%;
+  display: flex;
+  margin-top: 100px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.char__hp {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-origin: bottom !important;
+  background-color: rgb(251, 0, 0);
+  /* box-shadow: inset 0px 0px 30px rgba(0, 0, 0, 0.9); */
+}
+
+.char__hp::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(40deg, rgba(0, 0, 0, 0.834) 0%, rgba(0, 0, 0, 0) 100%);
+  bottom: 0;
+}
+
+.char__hp::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(230deg, rgba(255, 255, 255, 0.419) 0%, rgba(0, 0, 0, 0) 100%);
+  bottom: 0;
+}
+
+.char__hp-score {
+  position: absolute;
+  margin: 0 auto;
+  top: 40%;
+  z-index: 2;
+
+}
+
+.dungeon__floor {
+  width: 100vw;
+  height: 35vh;
+  background-image: url('./img/dungeon_floor.png');
+  background-size: auto 35vh;
+  background-position-x: 0;
+  background-repeat: repeat-x;
+  animation: floor 5s linear infinite;
+  z-index: 2;
+}
+
+.dungeon__background-first {
+  width: 100%;
+  height: 55vh;
+  background-image: url('./img/dungeon_back_1.png');
+  background-size: auto 55vh;
+  animation: backround_1 10s linear infinite;
+  z-index: 1;
+}
+
+.dungeon__background-second {
+  position: absolute;
+  top: 10vh;
+  width: 100%;
+  height: 55vh;
+  background-image: url('./img/dungeon_back_2.png');
+  background-size: auto 55vh;
+  z-index: 0;
+  animation: backround_2 15s linear infinite;
+}
+
+.char {
+  position: absolute;
+  bottom: 35vh;
+  width: 200px;
+  height: 148px;
+  z-index: 55;
+}
+
+.char__run {
+  background-image: url('./img/char_run.png');
+  animation: char_run_animation 1s steps(6) infinite;
+}
+
+.char__attack {
+  background-image: url('./img/char_attack.png');
+  animation: char_attack_animation .5s steps(6);
+}
+
+.skeleton {
+  display: block;
+  position: absolute;
+  bottom: 35vh;
+  height: 133px;
+  z-index: 55;
+  background-image: url('./img/skeleton_idle.png');
+  opacity: 0;
+}
+
+.skeleton__idle {
+  width: 100px;
+  background-image: url('./img/skeleton_idle.png');
+  animation: skeleton_idle_animation 1s steps(11) infinite, skeleton_run 5s linear infinite;
+}
+
+.skeleton__dead {
+  width: 133px;
+  background-image: url('./img/skeleton_dead.png');
+  animation: skeleton_run 5s linear infinite, skeleton_dead_animation 1s steps(15);
+}
+
+
+
+
+@keyframes floor {
+  0% {
+    background-position-x: 0;
+
   }
-  to {
-    transform: rotate(360deg);
+
+  100% {
+    background-position-x: -94vh;
+  }
+}
+
+@keyframes backround_1 {
+  0% {
+    background-position-x: 0;
+  }
+
+  100% {
+    background-position-x: -98vh;
+  }
+}
+
+@keyframes backround_2 {
+  0% {
+    background-position-x: 0;
+  }
+
+  100% {
+    background-position-x: -98vh;
+  }
+}
+
+@keyframes char_run_animation {
+  100% {
+    background-position: -1200px;
+  }
+}
+
+@keyframes char_attack_animation {
+  100% {
+    background-position: -1200px;
+  }
+}
+
+@keyframes skeleton_run {
+  0% {
+    left: 80vw;
+  }
+
+  5% {
+    opacity: 1;
+  }
+
+  100% {
+    left: -10vw;
+    opacity: 1;
+  }
+}
+
+@keyframes skeleton_idle_animation {
+  0% {
+    background-position: 0px;
+  }
+
+  100% {
+    background-position: -1100px;
+  }
+}
+
+@keyframes skeleton_dead_animation {
+  0% {
+    background-position: -2057px;
+  }
+
+  100% {
+    background-position: 0;
   }
 }

@@ -1,0 +1,26 @@
+.header {
+    color: aliceblue;
+    width: 100%;
+    height: 10vh;
+    margin: 0 auto;
+    background-color: #13131e;
+}
+
+.header__info {
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header__exp-container {
+    max-width: 100%;
+    height: 5px;
+}
+
+.header__exp {
+    background-color: rgb(6, 255, 2);
+    /* width: 100%; */
+    height: 100%;
+}
+
+
