@@ -12,7 +12,14 @@ export const counterSlice = createSlice({
     view: 'garden',
     lvl: 1,
     currentExp: 0,
+    maxExp: 10,
     money: 0,
+    improve: [
+      {name: 'Монет за скелета', amount: 1},
+      {name: 'Опыта за скелета', amount: 1}
+      // {goldInsec: {name: 'Gold in sec', amount: 1}},
+      // {expInSec: {name: 'Exp in sec', amount: 1}}
+    ]
   },
   reducers: {
     incrementMoney: (state, action) => {
@@ -24,10 +31,21 @@ export const counterSlice = createSlice({
     zeroingExp: (state, action) => {
       state.currentExp = action.payload;
     },
+    addExp: (state, action) => {
+      state.currentExp += action.payload;
+      if (state.currentExp >= state.maxExp) {
+        state.lvl = state.lvl + 1;
+        state.currentExp = 0;
+        state.maxExp = state.lvl * state.lvl * 10;
+      }
+    },
+    improveUp: (state, action) => {
+      state.improve[action.payload.index].amount = state.improve[action.payload.index].amount + action.payload.amount;
+    },
   }
 })
 
 
-export const { incrementMoney, increment, zeroingExp} = counterSlice.actions
+export const { incrementMoney, increment, zeroingExp, addExp, improveUp} = counterSlice.actions
 
 export default counterSlice.reducer

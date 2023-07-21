@@ -7,7 +7,7 @@ import './Header.css'
 const Header = () => {
     const money = useSelector(state => state.counter.money);
     const lvl = useSelector(state => state.counter.lvl);
-    const maxExp = lvl * lvl * 100;
+    const maxExp = useSelector(state => state.counter.maxExp);
     const currentExp = useSelector(state => state.counter.currentExp);
     const expBarRef = useRef();
 

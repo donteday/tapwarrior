@@ -10,30 +10,12 @@
   overflow: hidden;
 }
 
-.mob__container {
-  width: 100%;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 30px;
-  color: aliceblue;
-}
-
-.mob__bar-container {
-  border: 1px solid rgb(67, 67, 67);
-  width: 100px;
-  height: 7px;
-}
-
-.mob__bar-hp {
-  width: 100%;
-  height: 5px;
-  background-color: aqua;
-}
-
-.mob__box {
-  /* border: 2px solid red; */
+.button {
+  border: none;
+  background-color: #8d9bb8;
+  color: #181425;
+  font-family: 'Press Start 2P', cursive;
+  padding: 4px 8px;
 }
 
 .char__hp-container {
@@ -47,49 +29,6 @@
   border: 2px solid rgb(187, 1, 1);
   overflow: hidden;
   box-shadow: 0px 0px 10px rgba(50, 50, 50, 0.9)
-}
-
-.footer {
-  padding: 5px;
-  width: 100%;
-  display: flex;
-  margin-top: 100px;
-}
-
-.char__hp {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform-origin: bottom !important;
-  background-color: rgb(251, 0, 0);
-  /* box-shadow: inset 0px 0px 30px rgba(0, 0, 0, 0.9); */
-}
-
-.char__hp::after {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(40deg, rgba(0, 0, 0, 0.834) 0%, rgba(0, 0, 0, 0) 100%);
-  bottom: 0;
-}
-
-.char__hp::before {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(230deg, rgba(255, 255, 255, 0.419) 0%, rgba(0, 0, 0, 0) 100%);
-  bottom: 0;
-}
-
-.char__hp-score {
-  position: absolute;
-  margin: 0 auto;
-  top: 40%;
-  z-index: 2;
-
 }
 
 .dungeon__floor {
