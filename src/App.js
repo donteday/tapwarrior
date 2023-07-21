@@ -9,7 +9,7 @@ function App() {
   const charRef = useRef();
   const mobRef = useRef();
   const appRef = useRef();
-
+  let hit = false;
 
   // const hbBarRef = useRef();
   // const [mobHp, setMobHp] = useState(100);
@@ -44,9 +44,12 @@ function App() {
   const [monst, setMonst] = useState([skeleton]);
 
   function attack() {
+    if (hit || mobRef.current?.classList.contains("skeleton__dead")) return;
+    hit = true;
     charRef.current.classList.add("char__attack");
     setTimeout(() => {
       charRef.current.classList.remove("char__attack");
+      hit = false;
     }, 500)
     if (mobRef.current?.offsetLeft < 200 && mobRef.current?.offsetLeft > 100) {
       mobRef.current.classList.add("skeleton__dead");
