@@ -15,8 +15,9 @@ export const counterSlice = createSlice({
     maxExp: 10,
     money: 0,
     improve: [
+      { name: 'Опыта за скелета', amount: 1 },
       { name: 'Монет за скелета', amount: 1 },
-      { name: 'Опыта за скелета', amount: 1 }
+      { name: 'Макс. комбо', amount: 1 },
       // {goldInsec: {name: 'Gold in sec', amount: 1}},
       // {expInSec: {name: 'Exp in sec', amount: 1}}
     ]

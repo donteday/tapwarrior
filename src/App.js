@@ -47,10 +47,11 @@ function App() {
       mobRef.current.classList.add("skeleton__dead");
       coinRef.current.classList.add("char__coin");
 
-      setCombo(combo + 1);
+      if (ImproveArr[2].amount > combo) setCombo(combo + 1);
+      else setCombo(combo);
 
-      dispatch(incrementMoney(ImproveArr[0].amount * lvl * combo));
-      dispatch(addExp(ImproveArr[1].amount));
+      dispatch(incrementMoney(ImproveArr[1].amount * lvl * combo));
+      dispatch(addExp(ImproveArr[0].amount));
       setTimeout(() => {
         coinRef.current.classList.remove("char__coin");
         setMonst(null);

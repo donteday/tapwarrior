@@ -15,3 +15,10 @@
     width: 100%;
     align-items: center;
 }
+
+.improve-item__empty {
+    width: 100%;
+    text-align: center;
+    padding: 5px;
+    color: #8d9bb86b;
+}
