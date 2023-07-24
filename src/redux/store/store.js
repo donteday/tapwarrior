@@ -1,24 +1,33 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 
-// const localStore = localStorage.playerData
+const localStore = localStorage.playerDataTapWarrior
 
-// const moneyStart = localStore ? JSON.parse(localStore).money : 100;
+const moneyStart = localStore ? JSON.parse(localStore).money : 0;
+const lvlStart = localStore ? JSON.parse(localStore).lvl : 1;
+const currentExp = localStore ? JSON.parse(localStore).currentExp : 0;
+const maxExp = localStore ? JSON.parse(localStore).maxExp : 10;
+const expForEnemy = localStore ? JSON.parse(localStore).improve[0].amount : 1;
+const goldForEnemy = localStore ? JSON.parse(localStore).improve[1].amount : 1;
+const maxCombo = localStore ? JSON.parse(localStore).improve[2].amount : 1;
+const maxSpeed = localStore ? JSON.parse(localStore).improve[3].amount : 1;
+
+
 
 export const counterSlice = createSlice({
   name: 'game',
   initialState: {
     sound: true,
     view: 'garden',
-    lvl: 1,
-    currentExp: 0,
-    maxExp: 10,
-    money: 0,
+    lvl: lvlStart,
+    currentExp: currentExp,
+    maxExp: maxExp,
+    money: moneyStart,
     improve: [
-      { name: 'Опыта за скелета', amount: 1 },
-      { name: 'Монет за скелета', amount: 1 },
-      { name: 'Макс. комбо', amount: 1 },
-      { name: 'Макс. ускорение', amount: 1 },
+      { name: 'Опыта за скелета', amount: expForEnemy },
+      { name: 'Монет за скелета', amount: goldForEnemy },
+      { name: 'Макс. комбо', amount: maxCombo },
+      { name: 'Макс. ускорение', amount: maxSpeed },
       // {goldInsec: {name: 'Gold in sec', amount: 1}},
       // {expInSec: {name: 'Exp in sec', amount: 1}}
     ]

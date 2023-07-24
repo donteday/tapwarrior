@@ -7,7 +7,7 @@ export const store = configureStore({
     }
 })
 
-// function sub() {
-//     localStorage.playerData = JSON.stringify(store.getState().counter);
-//   }
-// store.subscribe(sub);
+function sub() {
+    localStorage.playerDataTapWarrior = JSON.stringify(store.getState().counter);
+  }
+store.subscribe(sub);
