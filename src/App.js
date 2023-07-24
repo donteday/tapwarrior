@@ -101,8 +101,10 @@ function App() {
       <div className='dungeon dungeon__background-first'></div>
       <div className='dungeon dungeon__floor' ></div>
       <div className='dungeon dungeon__background-second'></div>
-      <div className='char char__run' ref={charRef}>
-        <div ref={coinRef}></div>
+      <div className='dungeon char char__run' ref={charRef}>
+        <div ref={coinRef}>
+          <span className='coin-info'>+{ImproveArr[1].amount * lvl * combo}</span>
+        </div>
       </div>
       <div className='skeleton__run' style={{ animationDuration: `${speed - maxSpeed/10}s` }} ref={mobBoxRef}>
         {monst?.map((e) => e)}

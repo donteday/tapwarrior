@@ -137,6 +137,9 @@
 
 .char__coin {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 66px;
   height: 66px;
   left: 50px;
@@ -148,6 +151,16 @@
   animation: coin .7s steps(9) infinite, coin_transform .7s ease-in-out;
 }
 
+.coin-info {
+  display: none;
+  position: absolute;
+  bottom: -15px;
+}
+
+.char__coin .coin-info{
+  display: block;
+  
+}
 
 
 @keyframes floor {
