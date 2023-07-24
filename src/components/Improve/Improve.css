@@ -1,4 +1,5 @@
 .improve {
+    display: none;
     position: absolute;
     left: 0;
     right: 0;
@@ -8,4 +9,11 @@
     max-width: 500px;
     background-color: #181425;
     z-index: 55;
+}
+
+.button__close {
+    position: absolute;
+    font-size: 25px;
+    top: -25px;
+    right: -25px;
 }

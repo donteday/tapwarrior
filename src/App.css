@@ -64,6 +64,14 @@
   animation: backround_2 15s linear infinite;
 }
 
+.dungeon__multiplair {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 5vh;
+  text-align: center;
+}
+
 .char {
   position: absolute;
   bottom: 35vh;
@@ -104,6 +112,30 @@
   animation: skeleton_run 5s linear infinite, skeleton_dead_animation 1s steps(15);
 }
 
+.icon-improve {
+  position: absolute;
+  bottom: 100px;
+  left: 50px;
+  width: 100px;
+  height: 100px;
+  z-index: 55;
+  background-image: url('./img/icon_improve.png');
+  background-size: cover;
+
+}
+
+.char__coin {
+  position: absolute;
+  width: 66px;
+  height: 66px;
+  left: 50px;
+  right: 0;
+  margin: 0 auto;
+  transform: scale(0.7);
+  opacity: 0;
+  background-image: url('./img/coin.png');
+  animation: coin .7s steps(9) infinite, coin_transform .7s ease-in-out;
+}
 
 
 
@@ -182,5 +214,35 @@
 
   100% {
     background-position: 0;
+  }
+}
+
+@keyframes coin {
+  0% {
+    background-position: 594px;
+  }
+
+  100% {
+    background-position: 0;
+  }
+}
+
+@keyframes coin_transform {
+  0% {
+    top: -30px;
+    opacity: 0;
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    top: -100px;
+    opacity: 0;
   }
 }

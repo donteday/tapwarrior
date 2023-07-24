@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { useSelector } from 'react-redux'
 import './Header.css'
+import { amountRound } from '../../helpers/amountRound'
 // import { useRef } from 'react'
 // import { makeShopActiveItem, update} from '../../redux/store/store'
 
@@ -19,7 +20,7 @@ const Header = () => {
             </div>
             <div className="header__info">
                 <span>lvl: {lvl} </span>
-                <span>money: {money}</span>
+                <span>money: {amountRound(money)}</span>
             </div>
 
         </div >

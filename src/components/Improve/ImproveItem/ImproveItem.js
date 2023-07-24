@@ -1,6 +1,8 @@
 import './ImproveItem.css';
 import { useDispatch, useSelector } from 'react-redux'
 import { improveUp, incrementMoney } from '../../../redux/store/store'
+import { amountRound } from '../../../helpers/amountRound'
+
 
 const ImproveItem = ({ item, index }) => {
     const dispatch = useDispatch();
@@ -20,7 +22,7 @@ const ImproveItem = ({ item, index }) => {
         <div className="improve-item__info">
             <span >
 
-                {index === 0 ? item.amount * lvl : item.amount}
+                {index === 0 ? amountRound(item.amount) * lvl : item.amount}
             </span>
             <span>
                 {item.name}
@@ -28,7 +30,7 @@ const ImproveItem = ({ item, index }) => {
             </span>
         </div>
 
-        <button className='button' onClick={improveUpFunc}>УЛУЧШИТЬ ЗА {upPrice}</button>
+        <button className='button' onClick={improveUpFunc}>УЛУЧШИТЬ ЗА {amountRound(upPrice)}</button>
     </div>);
 }
 
