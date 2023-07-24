@@ -94,23 +94,32 @@
 .skeleton {
   display: block;
   position: absolute;
-  bottom: 35vh;
   height: 133px;
   z-index: 55;
   background-image: url('./img/skeleton_idle.png');
-  opacity: 0;
+  opacity: 1;
 }
 
 .skeleton__idle {
   width: 100px;
   background-image: url('./img/skeleton_idle.png');
-  animation: skeleton_idle_animation 1s steps(11) infinite, skeleton_run 5s linear infinite;
+  animation: skeleton_idle_animation 1s steps(11) infinite;
+}
+
+.skeleton__run {
+  display: block;
+  position: absolute;
+  width: 100px;
+  height: 133px;
+  animation: skeleton_run 5s linear infinite;
+  bottom: 35vh;
+  z-index: 2;
 }
 
 .skeleton__dead {
   width: 133px;
   background-image: url('./img/skeleton_dead.png');
-  animation: skeleton_run 5s linear infinite, skeleton_dead_animation 1s steps(15);
+  animation: skeleton_dead_animation 1s steps(15);
 }
 
 .icon-improve {
@@ -186,9 +195,10 @@
 @keyframes skeleton_run {
   0% {
     left: 80vw;
+    opacity: 0;
   }
 
-  5% {
+  10% {
     opacity: 1;
   }
 
@@ -211,6 +221,7 @@
 @keyframes skeleton_dead_animation {
   0% {
     background-position: -2057px;
+
   }
 
   100% {

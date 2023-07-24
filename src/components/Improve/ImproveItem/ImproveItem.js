@@ -10,7 +10,7 @@ const ImproveItem = ({ item, index }) => {
     const money = useSelector(state => state.counter.money);
     const lvl = useSelector(state => state.counter.lvl);
 
-    const upPrice = ImproveAmount * ImproveAmount * (index + 1) * (index + 1);
+    const upPrice = ImproveAmount * ImproveAmount * (index + 1) * (index + 1) * (index + 1) * (index + 1);
 
 
     function improveUpFunc() {
@@ -23,17 +23,17 @@ const ImproveItem = ({ item, index }) => {
             <>
                 <div className="improve-item__info">
                     <span >
-                        {index === 0 ? amountRound(item.amount * lvl) : item.amount}
+                        {index === 1 ? amountRound(item.amount * lvl) : item.amount}
                     </span>
                     <span>
                         {item.name}
-
                     </span>
                 </div>
                 <button
                 style={(money - upPrice) < 0 ? {backgroundColor: "#8d9bb86b"} : {backgroundColor: "#8d9bb8"}}
                 className='button'
-                onClick={improveUpFunc}>УЛУЧШИТЬ ЗА {amountRound(upPrice)}
+                onClick={improveUpFunc}>
+                    УЛУЧШИТЬ ЗА {amountRound(upPrice)}
             </button>
     </>
             : <span className='improve-item__empty'>Откроется на {(index + 1) * 3 - 3} уровне</span>

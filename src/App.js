@@ -13,12 +13,16 @@ function App() {
   const lvl = useSelector(state => state.counter.lvl);
   const charRef = useRef();
   const mobRef = useRef();
+  const mobBoxRef = useRef();
   const appRef = useRef();
   const coinRef = useRef();
   let hit = false;
   const [combo, setCombo] = useState(1);
+  const [maxSpeed, setMaxSpeed] = useState(1);
+  let speed = 5;
 
-  const skeleton = React.createElement("div", { className: "skeleton skeleton__idle dungeon", ref: mobRef });
+  const skeleton = React.createElement("div", { className: `skeleton skeleton__idle dungeon`, ref: mobRef });
+
   const [monst, setMonst] = useState([skeleton]);
 
   useEffect(() => {
@@ -32,10 +36,13 @@ function App() {
     if (combo > 1) {
       setCombo(combo - 1);
     }
+    if (maxSpeed > 1) {
+      setMaxSpeed(maxSpeed - 1);
+    }
   }
 
   function attack(e) {
-    
+    console.log(speed - maxSpeed/10);
     if (!e.target.classList.contains("dungeon") || hit || mobRef.current?.classList.contains("skeleton__dead")) return;
     hit = true;
     charRef.current.classList.add("char__attack");
@@ -43,22 +50,32 @@ function App() {
       charRef.current.classList.remove("char__attack");
       hit = false;
     }, 500)
-    if (mobRef.current?.offsetLeft < 180 && mobRef.current?.offsetLeft > 80) {
+
+    if (mobBoxRef.current?.offsetLeft < 180 && mobBoxRef.current?.offsetLeft > 80) {
       mobRef.current.classList.add("skeleton__dead");
       coinRef.current.classList.add("char__coin");
 
       if (ImproveArr[2].amount > combo) setCombo(combo + 1);
       else setCombo(combo);
 
+      if (ImproveArr[3].amount > maxSpeed) setMaxSpeed(maxSpeed + 1);
+      else setMaxSpeed(maxSpeed);
+
       dispatch(incrementMoney(ImproveArr[1].amount * lvl * combo));
       dispatch(addExp(ImproveArr[0].amount));
+
       setTimeout(() => {
         coinRef.current.classList.remove("char__coin");
+        mobBoxRef.current.classList.remove("skeleton__run");
+        mobRef.current.classList.remove("skeleton__dead");
+
         setMonst(null);
+
         setTimeout(() => {
+          mobBoxRef.current.classList.add("skeleton__run");
           setMonst([skeleton]);
         }, 500)
-      }, 1200)
+      }, 1000 - maxSpeed*20)
     }
   }
 
@@ -71,12 +88,14 @@ function App() {
       <Header />
       <span className='dungeon__multiplair'>x{combo}</span>
       <div className='dungeon dungeon__background-first'></div>
-      <div className='dungeon dungeon__floor'></div>
+      <div className='dungeon dungeon__floor' ></div>
       <div className='dungeon dungeon__background-second'></div>
       <div className='char char__run' ref={charRef}>
         <div ref={coinRef}></div>
       </div>
-      {monst?.map((e) => e)}
+      <div className='skeleton__run' style={{ animationDuration: `${speed - maxSpeed/10}s` }} ref={mobBoxRef}>
+        {monst?.map((e) => e)}
+      </div>
       <span className='icon-improve' onClick={improveOpen}></span>
       <Improve improveRef={improveRef} />
     </div>
