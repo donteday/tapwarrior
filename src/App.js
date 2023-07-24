@@ -5,12 +5,20 @@ import { incrementMoney, addExp } from './redux/store/store'
 import Header from './components/Header/Header';
 import Improve from './components/Improve/Improve';
 
+import mech from './sound/mech.mp3';
+import coin from './sound/coin.mp3';
+const mechSound = new Audio(mech);
+const coinSound = new Audio(coin);
+mechSound.preload = 'metadata';
+coinSound.preload = 'metadata';
+
 function App() {
   const dispatch = useDispatch();
   const improveRef = useRef();
 
   const ImproveArr = useSelector(state => state.counter.improve);
   const lvl = useSelector(state => state.counter.lvl);
+  const sound = useSelector(state => state.counter.sound);
   const charRef = useRef();
   const mobRef = useRef();
   const mobBoxRef = useRef();
@@ -44,6 +52,7 @@ function App() {
   function attack(e) {
     console.log(speed - maxSpeed/10);
     if (!e.target.classList.contains("dungeon") || hit || mobRef.current?.classList.contains("skeleton__dead")) return;
+    sound && mechSound.play();
     hit = true;
     charRef.current.classList.add("char__attack");
     setTimeout(() => {
@@ -52,6 +61,8 @@ function App() {
     }, 500)
 
     if (mobBoxRef.current?.offsetLeft < 180 && mobBoxRef.current?.offsetLeft > 80) {
+      sound && coinSound.play();
+
       mobRef.current.classList.add("skeleton__dead");
       coinRef.current.classList.add("char__coin");
 
@@ -86,7 +97,7 @@ function App() {
   return (
     <div className="app dungeon" onClick={attack} ref={appRef}>
       <Header />
-      <span className='dungeon__multiplair'>x{combo}</span>
+      {lvl >= 6 ? <span className='dungeon__multiplair'>x{combo}</span> : ''}      
       <div className='dungeon dungeon__background-first'></div>
       <div className='dungeon dungeon__floor' ></div>
       <div className='dungeon dungeon__background-second'></div>

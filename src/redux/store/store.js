@@ -44,10 +44,13 @@ export const counterSlice = createSlice({
     improveUp: (state, action) => {
       state.improve[action.payload.index].amount = state.improve[action.payload.index].amount + action.payload.amount;
     },
+    update: (state, action) => {
+      state[action.payload.name] = action.payload.source;
+    },
   }
 })
 
 
-export const { incrementMoney, increment, zeroingExp, addExp, improveUp } = counterSlice.actions
+export const { incrementMoney, increment, zeroingExp, addExp, improveUp, update } = counterSlice.actions
 
 export default counterSlice.reducer

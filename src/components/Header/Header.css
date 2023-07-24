@@ -4,12 +4,15 @@
     height: 10vh;
     margin: 0 auto;
     background-color: #13131e;
+    display: flex;
+    flex-direction: column;
 }
 
 .header__info {
     padding: 5px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .header__exp-container {
@@ -22,5 +25,33 @@
     /* width: 100%; */
     height: 100%;
 }
+
+.btn__sound {
+    /* position: absolute; */
+    right: 0;
+    top: 25px;
+    background-image: url(../../img/sound_icon.png);
+    background-size: cover;
+    width: 1.4em;
+    height: 1.4em;
+    transition: all .4s ease-in-out;
+    /* flex-basis: content; */
+}
+
+.no-active {
+    filter: opacity(40%);
+}
+
+.no-active::after {
+    content: '';
+    position: absolute;
+    display: block;
+    transform: rotate(45deg);
+    top: 50%;
+    width: 20px;
+    height: 2px;
+    background-color: azure;
+}
+
 
 

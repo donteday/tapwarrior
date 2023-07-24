@@ -42,7 +42,7 @@
   background-position-x: 0;
   background-repeat: repeat-x;
   animation: floor 5s linear infinite;
-  z-index: 2;
+  z-index: 5;
 }
 
 .dungeon__background-first {
@@ -104,6 +104,7 @@
   width: 100px;
   background-image: url('./img/skeleton_idle.png');
   animation: skeleton_idle_animation 1s steps(11) infinite;
+  z-index: 2;
 }
 
 .skeleton__run {
