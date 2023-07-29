@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 
-const localStore = localStorage.playerDataTapWarrior
+const localStore = localStorage.playerDataTapWarriorTest2;
 
 const moneyStart = localStore ? JSON.parse(localStore).money : 0;
 const lvlStart = localStore ? JSON.parse(localStore).lvl : 1;
@@ -28,6 +28,14 @@ export const counterSlice = createSlice({
       { name: 'Монет за скелета I', amount: goldForEnemyI, max: 50 },
       { name: 'Комбо I', amount: maxComboI, max: 10 },
       { name: 'Ускорение I', amount: maxSpeedI, max: 1 },
+      { name: 'Опыта за скелета II', amount: 0, max: 100 },
+    ],
+    runes: [
+      { name: 'Руна I', amount: 0, max: 100 },
+      { name: 'Руна II', amount: 0, max: 100 },
+      { name: 'Руна III', amount: 0, max: 100 },
+      { name: 'Руна IV', amount: 0, max: 100 },
+      { name: 'Руна V', amount: 0, max: 100 },
     ]
   },
   reducers: {
@@ -45,11 +53,14 @@ export const counterSlice = createSlice({
       if (state.currentExp >= state.maxExp) {
         state.lvl = state.lvl + 1;
         state.currentExp = 0;
-        state.maxExp = state.lvl * state.lvl * state.lvl * 5;
+        state.maxExp = state.lvl * state.lvl * state.lvl * 10;
       }
     },
     improveUp: (state, action) => {
       state.improve[action.payload.index].amount = state.improve[action.payload.index].amount + action.payload.amount;
+    },
+    runeUp: (state, action) => {
+      state.runes[action.payload.index].amount = state.runes[action.payload.index].amount + action.payload.amount;
     },
     update: (state, action) => {
       state[action.payload.name] = action.payload.source;
@@ -58,6 +69,6 @@ export const counterSlice = createSlice({
 })
 
 
-export const { incrementMoney, increment, zeroingExp, addExp, improveUp, update } = counterSlice.actions
+export const { incrementMoney, increment, zeroingExp, addExp, improveUp, update, runeUp } = counterSlice.actions
 
 export default counterSlice.reducer

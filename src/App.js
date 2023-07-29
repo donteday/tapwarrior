@@ -18,6 +18,7 @@ function App() {
   const improveRef = useRef();
 
   const ImproveArr = useSelector(state => state.counter.improve);
+  const RunesArr = useSelector(state => state.counter.runes);
   const lvl = useSelector(state => state.counter.lvl);
   const sound = useSelector(state => state.counter.sound);
   const charRef = useRef();
@@ -25,6 +26,7 @@ function App() {
   const mobBoxRef = useRef();
   const appRef = useRef();
   const coinRef = useRef();
+  const comboRef = useRef();
   let hit = false;
   const [combo, setCombo] = useState(1);
   const [maxSpeed, setMaxSpeed] = useState(1);
@@ -35,9 +37,26 @@ function App() {
   const [monst, setMonst] = useState([skeleton]);
 
   useEffect(() => {
+    const moneyInterval = setInterval(() => {
+      let count = 0;
+      RunesArr.map(function (e, index) {
+        if (e.amount) {
+          count += e.amount*(index+1)*(index+1);
+        };
+        return true;
+      });
+      dispatch(incrementMoney(count))
+    }, 1000);
+    return () => clearInterval(moneyInterval);
+
+  }, [RunesArr, dispatch]);
+
+  useEffect(() => {
+
+
     const timerId = setInterval(() => {
       tick();
-    }, 3500);
+    }, 5000);
     return () => clearInterval(timerId);
   });
 
@@ -45,13 +64,12 @@ function App() {
     if (combo > 1) {
       setCombo(combo - 1);
     }
-    if (maxSpeed > 1) {
-      setMaxSpeed(maxSpeed - 1);
-    }
+    // if (maxSpeed > 1) {
+    //   setMaxSpeed(maxSpeed - 1);
+    // }
   }
 
   function attack(e) {
-    console.log(speed - ImproveArr[3].amount / 2);
     if (!e.target.classList.contains("dungeon") || hit || mobRef.current?.classList.contains("skeleton__dead")) return;
     sound && mechSound.play();
     hit = true;
@@ -67,6 +85,7 @@ function App() {
       mobRef.current.classList.add("skeleton__dead");
       coinRef.current.classList.add("char__coin");
 
+      if (lvl >= 6) comboRef.current.style.display = 'block';
       if (ImproveArr[2].amount > combo) setCombo(combo + 1);
       else setCombo(combo);
 
@@ -74,20 +93,22 @@ function App() {
       else setMaxSpeed(maxSpeed);
 
       dispatch(incrementMoney(ImproveArr[1].amount * lvl * combo));
-      dispatch(addExp(ImproveArr[0].amount));
+      dispatch(addExp(ImproveArr[0].amount * combo));
+      console.log(ImproveArr[0].amount);
 
       setTimeout(() => {
         coinRef.current.classList.remove("char__coin");
         mobBoxRef.current.classList.remove("skeleton__run");
         mobRef.current.classList.remove("skeleton__dead");
-
+        if (lvl >= 6) comboRef.current.style.display = 'none';
         setMonst(null);
+
 
         setTimeout(() => {
           mobBoxRef.current.classList.add("skeleton__run");
           setMonst([skeleton]);
         }, 500)
-      }, 1000 - maxSpeed * 20)
+      }, 1000)
     }
   }
 
@@ -98,7 +119,7 @@ function App() {
   return (
     <div className="app dungeon" onClick={attack} ref={appRef}>
       <Header />
-      {lvl >= 6 ? <span className='dungeon__multiplair'>x{combo}</span> : ''}
+      {lvl >= 6 ? <span className='dungeon__multiplair' ref={comboRef}>Комбо x{combo}</span> : ''}
       <div className='dungeon dungeon__background-first'></div>
       <div className='dungeon dungeon__floor' ></div>
       <div className='dungeon dungeon__background-second'></div>

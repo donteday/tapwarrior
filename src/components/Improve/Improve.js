@@ -2,9 +2,11 @@ import './Improve.css'
 import { useSelector } from 'react-redux'
 import ImproveItem from './ImproveItem/ImproveItem';
 import { useState } from 'react';
+import RuneItem from './RuneItem/RuneItem';
 
 const Improve = ({ improveRef }) => {
     const ImproveArr = useSelector(state => state.counter.improve);
+    const RunesArr = useSelector(state => state.counter.runes);
     function closeWindow() { improveRef.current.style.display = 'none'; }
 
     const [improveView, setImproveView] = useState('chracter');
@@ -37,7 +39,7 @@ const Improve = ({ improveRef }) => {
             {improveView === 'chracter' ?
 
                 ImproveArr.map((e, index) => (<ImproveItem item={e} key={e.name} index={index} />))
-                : <div className='improve__runes'></div>
+                : RunesArr.map((e, index) => (<RuneItem item={e} key={e.name} index={index} />))
             }
         </div>);
 }

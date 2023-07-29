@@ -1,0 +1,42 @@
+.rune {
+    border: 2px solid #8d9bb8;
+    margin-bottom: 10px;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.rune:nth-child(2) {
+    margin-top: 20px;
+}
+
+.rune__img {
+    width: 50px;
+    height: 50px;
+    animation: rune steps(4) 1s infinite;
+    
+    /* transform: scale(2); */
+}
+
+.rune__info {
+    flex-basis: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.rune__btn {
+    width: 100px;
+    text-align: center;
+}
+
+.rune-0 {
+    background-image: url('../../../img/rune_0.png');
+}
+
+@keyframes rune {
+    100%{
+        background-position: 200px;
+    } 
+}

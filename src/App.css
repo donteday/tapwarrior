@@ -68,10 +68,26 @@
 
 .dungeon__multiplair {
   position: absolute;
+  display: none;
   left: 0;
   right: 0;
-  top: 5vh;
+  z-index: 44;
+  color: rgb(254, 224, 0);
+  
   text-align: center;
+  animation: combo 1s ease-out infinite;
+}
+
+
+@keyframes combo {
+  0% {
+    top: 30vh;
+    opacity: 0;
+  }
+
+  100% {
+    top: 20vh;
+  }
 }
 
 .char {
@@ -253,6 +269,7 @@
     background-position: 0;
   }
 }
+
 
 @keyframes coin_transform {
   0% {

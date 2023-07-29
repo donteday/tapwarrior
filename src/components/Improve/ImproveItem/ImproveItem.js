@@ -10,9 +10,9 @@ const ImproveItem = ({ item, index }) => {
     const money = useSelector(state => state.counter.money);
     const lvl = useSelector(state => state.counter.lvl);
 
-    let upPrice = Math.pow(ImproveAmount, index + 2) * Math.pow(index + 1, index + 1);
+    let upPrice = ImproveAmount*ImproveAmount + Math.pow(ImproveAmount+1, index + 1) * Math.pow(index + index + 1, index + 1);
     if (index === 3) {
-        upPrice = 250000;
+        upPrice = 25000;
     }
 
     function improveUpFunc() {
