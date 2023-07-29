@@ -3,18 +3,45 @@
     position: absolute;
     left: 0;
     right: 0;
-    top: 100px;
+    bottom: 0;
     margin: 0 auto;
-    padding: 10px;
+    padding: 0 10px;
     max-width: 500px;
+    height: 35vh;
+    /* background-color: #8d9bb8; */
+
     background-color: #181425;
     z-index: 55;
+    overflow-y: scroll;
 }
 
-.button__close {
-    position: absolute;
-    display: block;
-    font-size: 25px;
-    top: -25px;
+.improve__header {
+    position: fixed;
+    margin: 0 auto;
+    max-width: 500px;
+    left: 0;
     right: 0;
+    background-color: #181425;
+    display: flex;
+    padding: 0 10px;
+    justify-content: space-between;
+}
+
+.improve__header-btn {
+    background-color: #8d9bb8;
+    width: 100%;
+    text-align: center;
+    padding: 5px;
+    font-size: 10px;
+}
+
+
+.button__close {
+    font-size: 10px;
+    padding: 5px;
+}
+
+.improve__runes {
+    border: 2px solid #8d9bb8;
+    height: 35vh;
 }

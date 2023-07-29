@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { incrementMoney, addExp } from './redux/store/store'
 import Header from './components/Header/Header';
 import Improve from './components/Improve/Improve';
+import { amountRound } from './helpers/amountRound'
 
 import mech from './sound/mech.mp3';
 import coin from './sound/coin.mp3';
@@ -50,7 +51,7 @@ function App() {
   }
 
   function attack(e) {
-    console.log(speed - maxSpeed/10);
+    console.log(speed - ImproveArr[3].amount / 2);
     if (!e.target.classList.contains("dungeon") || hit || mobRef.current?.classList.contains("skeleton__dead")) return;
     sound && mechSound.play();
     hit = true;
@@ -86,7 +87,7 @@ function App() {
           mobBoxRef.current.classList.add("skeleton__run");
           setMonst([skeleton]);
         }, 500)
-      }, 1000 - maxSpeed*20)
+      }, 1000 - maxSpeed * 20)
     }
   }
 
@@ -97,16 +98,16 @@ function App() {
   return (
     <div className="app dungeon" onClick={attack} ref={appRef}>
       <Header />
-      {lvl >= 6 ? <span className='dungeon__multiplair'>x{combo}</span> : ''}      
+      {lvl >= 6 ? <span className='dungeon__multiplair'>x{combo}</span> : ''}
       <div className='dungeon dungeon__background-first'></div>
       <div className='dungeon dungeon__floor' ></div>
       <div className='dungeon dungeon__background-second'></div>
       <div className='dungeon char char__run' ref={charRef}>
         <div ref={coinRef}>
-          <span className='coin-info'>+{ImproveArr[1].amount * lvl * combo}</span>
+          <span className='coin-info'>+{amountRound(ImproveArr[1].amount * lvl * combo)}</span>
         </div>
       </div>
-      <div className='skeleton__run' style={{ animationDuration: `${speed - maxSpeed/10}s` }} ref={mobBoxRef}>
+      <div className='skeleton__run' style={{ animationDuration: `${speed - ImproveArr[3].amount / 2}s` }} ref={mobBoxRef}>
         {monst?.map((e) => e)}
       </div>
       <span className='icon-improve' onClick={improveOpen}></span>

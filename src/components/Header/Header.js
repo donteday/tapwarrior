@@ -2,7 +2,6 @@ import React, { useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import './Header.css'
 import { amountRound } from '../../helpers/amountRound'
-// import { useRef } from 'react'
 import { update } from '../../redux/store/store'
 
 const Header = () => {

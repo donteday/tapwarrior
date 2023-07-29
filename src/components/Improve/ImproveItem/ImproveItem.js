@@ -10,32 +10,40 @@ const ImproveItem = ({ item, index }) => {
     const money = useSelector(state => state.counter.money);
     const lvl = useSelector(state => state.counter.lvl);
 
-    const upPrice = ImproveAmount * ImproveAmount * (index + 1) * (index + 1) * (index + 1) * (index + 1);
-
+    let upPrice = Math.pow(ImproveAmount, index + 2) * Math.pow(index + 1, index + 1);
+    if (index === 3) {
+        upPrice = 250000;
+    }
 
     function improveUpFunc() {
-        if (money - upPrice < 0) return;
+        if (money - upPrice < 0 || item.amount === item.max) return;
         dispatch(improveUp({ 'index': index, 'amount': 1 }));
         dispatch(incrementMoney(- upPrice))
     }
     return (<div className="improve-item">
         {(index + 1) * 3 - 3 <= lvl ?
-            <>
-                <div className="improve-item__info">
-                    <span >
-                        {index === 1 ? amountRound(item.amount * lvl) : item.amount}
-                    </span>
-                    <span>
-                        {item.name}
-                    </span>
+            <div className="improve-item__container">
+                <img className='improve-item__img' src={require(`../../../img/icon_${index}.png`)} alt="" />
+                <div className='improve-item__ui'>
+                    <div className="improve-item__info">
+                        <span >
+                            {index === 1 ? amountRound(item.amount * lvl) : item.amount}
+                        </span>
+                        <span>
+                            {item.name}
+                        </span>
+                    </div>
+                    <button
+                        style={(money - upPrice) < 0 || item.amount === item.max ? { backgroundColor: "#8d9bb86b" } : { backgroundColor: "#8d9bb8" }}
+                        className='button'
+                        onClick={improveUpFunc}>
+                        {item.amount === item.max ? `МАКС`
+                            : `УЛУЧШИТЬ ЗА ${amountRound(upPrice)}`
+                        }
+                    </button>
                 </div>
-                <button
-                style={(money - upPrice) < 0 ? {backgroundColor: "#8d9bb86b"} : {backgroundColor: "#8d9bb8"}}
-                className='button'
-                onClick={improveUpFunc}>
-                    УЛУЧШИТЬ ЗА {amountRound(upPrice)}
-            </button>
-    </>
+
+            </div>
             : <span className='improve-item__empty'>Откроется на {(index + 1) * 3 - 3} уровне</span>
         }
 

@@ -8,9 +8,9 @@ const lvlStart = localStore ? JSON.parse(localStore).lvl : 1;
 const currentExp = localStore ? JSON.parse(localStore).currentExp : 0;
 const maxExp = localStore ? JSON.parse(localStore).maxExp : 10;
 const expForEnemy = localStore ? JSON.parse(localStore).improve[0].amount : 1;
-const goldForEnemy = localStore ? JSON.parse(localStore).improve[1].amount : 1;
-const maxCombo = localStore ? JSON.parse(localStore).improve[2].amount : 1;
-const maxSpeed = localStore ? JSON.parse(localStore).improve[3].amount : 1;
+const goldForEnemyI = localStore ? JSON.parse(localStore).improve[1].amount : 1;
+const maxComboI = localStore ? JSON.parse(localStore).improve[2].amount : 1;
+const maxSpeedI = localStore ? JSON.parse(localStore).improve[3].amount : 0;
 
 
 
@@ -24,12 +24,10 @@ export const counterSlice = createSlice({
     maxExp: maxExp,
     money: moneyStart,
     improve: [
-      { name: 'Опыта за скелета', amount: expForEnemy },
-      { name: 'Монет за скелета', amount: goldForEnemy },
-      { name: 'Макс. комбо', amount: maxCombo },
-      { name: 'Макс. ускорение', amount: maxSpeed },
-      // {goldInsec: {name: 'Gold in sec', amount: 1}},
-      // {expInSec: {name: 'Exp in sec', amount: 1}}
+      { name: 'Опыта за скелета I', amount: expForEnemy, max: 100 },
+      { name: 'Монет за скелета I', amount: goldForEnemyI, max: 50 },
+      { name: 'Комбо I', amount: maxComboI, max: 10 },
+      { name: 'Ускорение I', amount: maxSpeedI, max: 1 },
     ]
   },
   reducers: {
@@ -47,7 +45,7 @@ export const counterSlice = createSlice({
       if (state.currentExp >= state.maxExp) {
         state.lvl = state.lvl + 1;
         state.currentExp = 0;
-        state.maxExp = state.lvl * state.lvl * 10;
+        state.maxExp = state.lvl * state.lvl * state.lvl * 5;
       }
     },
     improveUp: (state, action) => {

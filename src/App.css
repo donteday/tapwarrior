@@ -14,6 +14,7 @@
 .button {
   border: none;
   background-color: #8d9bb86b;
+  max-width: 200px;
   color: #181425;
   font-family: 'Press Start 2P', cursive;
   padding: 4px 8px;
@@ -125,7 +126,7 @@
 
 .icon-improve {
   position: absolute;
-  bottom: 100px;
+  bottom: 70px;
   left: 50px;
   width: 100px;
   height: 100px;
